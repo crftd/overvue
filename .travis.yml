@@ -4,6 +4,10 @@ cache: yarn
 node_js: 10.12
 git:
   depth: 2
+script:
+  - yarn lint
+  - yarn test:unit
+  - yarn build
 deploy:
   provider: pages
   local_dir: dist
