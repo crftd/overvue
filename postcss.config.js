@@ -1,6 +1,7 @@
 module.exports = {
   plugins: {
-    autoprefixer: {},
+    'postcss-normalize': {},
+    precss: {},
     'postcss-font-magician': {
       variants: {
         Quicksand: {
@@ -16,5 +17,6 @@ module.exports = {
       },
       foundries: ['google'],
     },
+    autoprefixer: {},
   },
 };

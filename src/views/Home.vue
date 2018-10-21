@@ -1,24 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="Genius" src="../assets/kojima.jpg">
+    <Vuellect msg="Vuellect"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Vuellect from '@/components/Vuellect.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    Vuellect,
   },
 };
 </script>
 
 <style>
   .home {
-    font-family: Arvo;
+    font-family: Quicksand;
   }
 </style>

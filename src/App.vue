@@ -9,6 +9,13 @@
 </template>
 
 <style>
+  * {
+    box-sizing: border-box
+  }
+  :focus {
+    outline: 2px solid rgba(66, 185, 131, 0.73);
+  }
+
 #app {
   font-family: Quicksand, 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
