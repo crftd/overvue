@@ -13,4 +13,5 @@ export default new Vuex.Store({
   actions: {
 
   },
+  strict: process.env.NODE_ENV !== 'production',
 });
