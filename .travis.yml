@@ -1,0 +1,15 @@
+language: node_js
+sudo: false
+cache: yarn
+node_js: 10.12
+git:
+  depth: 2
+deploy:
+  provider: pages
+  local_dir: dist
+  skip_cleanup: true
+  github_token:
+    secure: wPaRKXUBsUva0ZngH+W2Gs1YmYL0aCfD10Px54FE/A/R/AiKjXVcZFXY35GyPUAwfnKj5vpsJ6llvb27mB01l6O1rnSHIjoGENVEObeuwHnvsBbFWgz6neyM3dMXPOu3cCbc4zOaKpbda1PS8FK//HNOasfxdA8ch310KTp6Q80UxCZgwOTFLltHUmsxoOh2rLJDXQ/AR1iL/FeA7Eve5tQczhyCOL892YH1oN40Xcz6qNf6ZR5YyKLz24XzWFmvB63/NyhH8iApEpWXstmLzIT+hc0pkr5bj5W6A7jPufIbH+vYDUqILsRVFldXvTd1SyRjnBs3OwHZsT07ffdGcq/c2ciqhp/+XJf0TKFt+5DYRkdSzfr2RtzotR8d9gJ4+3Q6sPG5I5A91OGAHhXG6Y9GhXDkQTWXgGmwZFSJT4cptqEP5FNJroSLJJ5JoqjVVNjFYct9Gv95oalm7oHacdWp+UhRDhBp6dlpQEe+NF6PgdIAf2jPugt4PkHcrSkACeSmyVT1UezPpmat//Ox6SHl3fbU28934PsnQM0MBoa8VedeCnnPjvlPz7X6ecYFbp5SygDU7+Wit9y/mibAMQ92TkVn3Fa20C8TuEyqHVaLs2gXmToIAYmg0BKLn8ISwRVDC8dc3yox8n+R2ReRbexeAQvUSvKnGOFEo38tZ+U=
+  on:
+    tags: true
+    branch: master
