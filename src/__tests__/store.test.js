@@ -19,6 +19,7 @@ describe('store', () => {
       const expectedState = {
         counter: true,
         imageId: 111111,
+        latestImageId: 111110,
         imageUrl: 'yourmom.jpg',
       };
 
@@ -31,14 +32,20 @@ describe('store', () => {
 
     test(SHOW_COUNTER_MUTATION, () => {
       // Arrange
+      const expectedLatestImageId = 111110;
       const expectedImageId = 204863;
       const expectedState = DEFAULT_STATE;
+      const expectedPayload = {
+        imageId: expectedImageId,
+        latestImageId: expectedLatestImageId,
+      };
 
       // Act
-      mutations[SHOW_COUNTER_MUTATION](expectedState, expectedImageId);
+      mutations[SHOW_COUNTER_MUTATION](expectedState, expectedPayload);
 
       // Assert
       expect(expectedState.imageId).toEqual(expectedImageId);
+      expect(expectedState.latestImageId).toEqual(expectedLatestImageId);
       expect(expectedState.counter).toEqual(true);
       expect(expectedState.imageUrl).toBeNull();
     });
@@ -55,6 +62,7 @@ describe('store', () => {
       expect(expectedState.imageUrl).toEqual(expectedImageUrl);
       expect(expectedState.counter).toEqual(false);
       expect(expectedState.imageId).toBeNull();
+      expect(expectedState.latestImageId).toBeNull();
     });
   });
 
@@ -102,13 +110,17 @@ describe('store', () => {
         new Promise((resolve) => {
           resolve(expectedError);
         }));
+      const expectedPayload = {
+        imageId: expectedImageId,
+        latestImageId: expectedLatestImageId,
+      };
 
       // Act
       await actions[FETCH_IMAGE_ACTION](expectedContext, expectedImageId);
 
       // Assert
       expect(mockArchillect.getImage).toHaveBeenCalledWith(expectedImageId);
-      expect(expectedContext.commit).toHaveBeenCalledWith(expectedMutationName, expectedImageId);
+      expect(expectedContext.commit).toHaveBeenCalledWith(expectedMutationName, expectedPayload);
     });
 
     test(`${FETCH_IMAGE_ACTION} - error`, async () => {

@@ -19,7 +19,7 @@ export default {
   }),
   methods: {
     submit() {
-      this[FETCH_IMAGE_ACTION](this.result);
+      this[FETCH_IMAGE_ACTION](parseInt(this.result, 10));
     },
     ...mapActions([FETCH_IMAGE_ACTION]),
   },
