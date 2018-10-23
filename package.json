@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:e2e:headless": "vue-cli-service test:e2e --headless",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "vue-cli-service test:unit --silent",
     "deploy:major": "yarn version --major && git push --follow-tags",
     "deploy:minor": "yarn version --minor && git push --follow-tags",
     "deploy:patch": "yarn version --patch && git push --follow-tags"

@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
-    <h1>{{ msg }}</h1>
-    <form>
+    <h1 class="title">{{ msg }}</h1>
+    <form @submit.prevent="submit()">
       <input class="image-id" type="text" v-model="result">
+      <button class="button">Get inspired</button>
     </form>
-    <div class="result">{{ result }}</div>
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
   data: () => ({
     result: '',
   }),
+  methods: {
+    submit() {
+      console.log(this.result);
+    },
+  },
   props: {
     msg: String,
   },
@@ -35,8 +40,22 @@ export default {
     text-align: center;
   }
 
-  .result {
-    margin-top: 10px;
-    font-size: 24px;
+  .title {
+    font-family: Arvo;
+    font-size: 27pt;
+  }
+
+  .button {
+    margin-top: 50px;
+    width: 400px;
+    height: 68px;
+    font-weight: 400;
+    font-family: Quicksand;
+
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    background-color: #42b983;
+    font-size: 27pt;
   }
 </style>
