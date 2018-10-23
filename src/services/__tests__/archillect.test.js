@@ -14,12 +14,14 @@ describe('atchillect', () => {
       const expectedImageResponse = { url: expectedImageUrl };
       const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
       const expectedResponse = {
-        sourceLinks: [
-          'https://www.google.com/searchbyimage?safe=offℑurl=http://78.media.tumblr.com/a06af535eb801c32ff60c5dbb0031d13/tumblr_olhnlsSjnS1vczpxxo1_400.gif',
-        ],
-        imageSource: expectedImageUrl,
-        original: `http://archillect.com/${expectedImageId}`,
-        id: expectedImageId,
+        data: {
+          sourceLinks: [
+            'https://www.google.com/searchbyimage?safe=offℑurl=http://78.media.tumblr.com/a06af535eb801c32ff60c5dbb0031d13/tumblr_olhnlsSjnS1vczpxxo1_400.gif',
+          ],
+          imageSource: expectedImageUrl,
+          original: `http://archillect.com/${expectedImageId}`,
+          id: expectedImageId,
+        },
       };
       mockAxios.get = jest.fn(() => new Promise((resolve) => { resolve(expectedResponse); }));
 
@@ -38,7 +40,9 @@ describe('atchillect', () => {
       const expectedImageId = 204863;
       const expectedGetPath = `${BASE_URL}/${expectedImageId}`;
       const expectedResponse = {
-        error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
+        data: {
+          error: `The id ${expectedImageId} should be between 1 and ${expectedLatestImageId}`,
+        },
       };
       mockAxios.get = jest.fn(() => new Promise((resolve) => { resolve(expectedResponse); }));
 

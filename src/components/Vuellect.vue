@@ -1,14 +1,17 @@
 <template>
   <div class="wrapper">
     <h1 class="title">{{ msg }}</h1>
-    <form @submit.prevent="submit()">
-      <input class="image-id" type="text" v-model="result">
+    <form @submit.prevent="submit">
+      <input class="image-id" type="number" v-model="result">
       <button class="button">Get inspired</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { FETCH_IMAGE_ACTION } from '../store';
+
 export default {
   name: 'Vuellect',
   data: () => ({
@@ -16,8 +19,9 @@ export default {
   }),
   methods: {
     submit() {
-      console.log(this.result);
+      this[FETCH_IMAGE_ACTION](this.result);
     },
+    ...mapActions([FETCH_IMAGE_ACTION]),
   },
   props: {
     msg: String,
