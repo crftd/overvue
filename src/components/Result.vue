@@ -6,19 +6,49 @@
     <div class="result">
       <img v-if="imageUrl" :src="imageUrl" alt="Archillect">
       <div class="counter" v-if="counter">
-        <p>10 Days 12:05:14</p>
+        <p>{{ duration }}</p>
+        <p class="date">{{ estimatedTimeOfPost.format('MMMM DD YYYY hh:mm:ss') }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
+import moment from 'moment';
+import momentDurationFormatSetup from 'moment-duration-format';
+
+momentDurationFormatSetup(moment);
 
 
 export default {
   name: 'Result',
-  computed: mapState(['counter', 'imageUrl']),
+  data() {
+    return {
+      duration: '',
+      intervalId: '',
+    };
+  },
+  computed: {
+    ...mapState(['counter', 'imageUrl']),
+    ...mapGetters(['estimatedTimeOfPost']),
+  },
+  watch: {
+    estimatedTimeOfPost() {
+      this.updateDuration();
+    },
+  },
+  created() {
+    this.intervalId = setInterval(this.updateDuration, 1000);
+  },
+  destroyed() {
+    clearInterval(this.intervalId);
+  },
+  methods: {
+    updateDuration() {
+      this.duration = moment.duration(this.estimatedTimeOfPost.diff(moment())).format('M [months] d [days] hh:mm:ss');
+    },
+  },
 };
 </script>
 
@@ -39,5 +69,9 @@ export default {
     height: 400px;
 
     font-size: 60px;
+  }
+
+  .date {
+    font-size: 37px;
   }
 </style>

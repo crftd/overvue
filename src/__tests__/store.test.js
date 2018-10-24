@@ -1,6 +1,11 @@
 describe('store', () => {
+  const mockMomentObject = {
+    add: () => {},
+  };
+  const mockMoment = () => mockMomentObject;
   const mockArchillect = { getImage: () => {} };
   jest.mock('../services/archillect', () => mockArchillect);
+  jest.mock('moment', () => mockMoment);
 
   const store = require('../store');
   const { DEFAULT_STATE } = store;
@@ -139,6 +144,32 @@ describe('store', () => {
       // Assert
       expect(mockArchillect.getImage).toHaveBeenCalledWith(expectedImageId);
       expect(expectedContext.commit).toHaveBeenCalledWith(expectedMutationName);
+    });
+  });
+
+  describe('getters', () => {
+    const { getters } = store;
+
+    test('estimatedTimeOfPost', () => {
+      // Arrange
+      const expectedDate = new Date();
+      const expectedTimeKey = 'minutes';
+      const expectedLatestImageId = 111110;
+      const expectedImageId = 204863;
+      const expectedDurationInMinutes = (expectedImageId - expectedLatestImageId) * 10;
+      const expectedState = {
+        imageId: expectedImageId,
+        latestImageId: expectedLatestImageId,
+      };
+
+      mockMomentObject.add = jest.fn(() => expectedDate);
+
+      // Act
+      const actualDate = getters.estimatedTimeOfPost(expectedState);
+
+      // Assert
+      expect(actualDate).toEqual(expectedDate);
+      expect(mockMomentObject.add).toHaveBeenCalledWith(expectedDurationInMinutes, expectedTimeKey);
     });
   });
 });

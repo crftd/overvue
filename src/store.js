@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import Vuex from 'vuex';
+import moment from 'moment';
 import archillect from './services/archillect';
 
 Vue.use(Vuex);
@@ -54,9 +55,14 @@ export const actions = {
   },
 };
 
+export const getters = {
+  estimatedTimeOfPost: state => moment().add(10 * (state.imageId - state.latestImageId), 'minutes'),
+};
+
 export default new Vuex.Store({
   state: { ...DEFAULT_STATE },
   mutations,
   actions,
+  getters,
   strict: process.env.NODE_ENV !== 'production',
 });

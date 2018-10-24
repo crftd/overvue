@@ -38,6 +38,7 @@ describe('Home page', () => {
     const expectedResultSelector = '.result';
     const expectedCounterSelector = '.counter';
     const expectedButtonSelector = '.button';
+    const expectedDateSelector = '.date';
     cy.visit('/');
     cy.get(expectedInputSelector).type(expectedImageId);
 
@@ -46,5 +47,6 @@ describe('Home page', () => {
 
     // Assert
     cy.get(expectedResultSelector).find(expectedCounterSelector).should('be.visible');
+    cy.get(expectedResultSelector).find(expectedDateSelector).should('be.visible');
   });
 });
