@@ -14,8 +14,8 @@
     "deploy:patch": "yarn version --patch && git push --follow-tags"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "moment": "^2.22.2",
+    "axios": "^0.21.3",
+    "moment": "^2.29.4",
     "moment-duration-format": "^2.2.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
